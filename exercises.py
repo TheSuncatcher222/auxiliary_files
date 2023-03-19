@@ -620,17 +620,8 @@ T = range(1, 9 + 1)
 def init_input() -> Tuple:
     """Получает значение k и количество символов на поле."""
     max_nums_at_time: int = int(input()) * GAMERS
-    chars_count: Dict[str, int] = {
-        ZERO_CHAR: 0,
-        '1': 0,
-        '2': 0,
-        '3': 0,
-        '4': 0,
-        '5': 0,
-        '6': 0,
-        '7': 0,
-        '8': 0,
-        '9': 0}
+    chars_count = {str(num): 0 for num in range(1, 10)}
+    chars_count['ZERO_CHAR'] = 0
     for _ in range(FIELD_ROWS):
         row: str = input()
         for char in row:
