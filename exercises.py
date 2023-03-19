@@ -633,8 +633,8 @@ def init_input() -> Tuple:
 def count_points(max_nums_at_time: int, chars_count: Dict[str, int]) -> str:
     """Вычисляет максимальное количество баллов."""
     result: int = 0
-    for _ in T:
-        if 0 < chars_count[str(_)] <= max_nums_at_time:
+    for second in T:
+        if 0 < chars_count[str(second)] <= max_nums_at_time:
             result += 1
     return result
 
