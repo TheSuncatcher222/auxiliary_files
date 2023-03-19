@@ -532,13 +532,13 @@ def get_input() -> Tuple:
 
 def count_distance(street_len: int, street: list):
     """Выводит список расстояний до ближайшего 0 для каждого из участков."""
-    result: list = []
+    result: list = [None] * street_len
     max_index: int = street_len - 1
     for plot_before_zero in range(street_len):
         if street[plot_before_zero] != 0:
-            result.append(max_index - plot_before_zero)
+            result[plot_before_zero] = max_index - plot_before_zero
         else:
-            result.append(0)
+            result[plot_before_zero] = 0
             last_zero: int = plot_before_zero
             break
     if plot_before_zero == max_index:
@@ -551,9 +551,9 @@ def count_distance(street_len: int, street: list):
     for plot in range(plot_before_zero + 1, street_len):
         if street[plot] != 0:
             i += 1
-            result.append(i)
+            result[plot] = i
         else:
-            result.append(0)
+            result[plot] = 0
             renew_value: int = 0
             for k in range(plot - 1, (plot + last_zero) // 2, -1):
                 renew_value += 1
