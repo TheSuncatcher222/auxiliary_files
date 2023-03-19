@@ -513,56 +513,69 @@ from decorators import time_measure_decorator
 Например, для длины улицы 7 (0 1 5 4 9 0 2) ответ будет: 0 1 2 2 0 1
 """
 
-# (3 1 5 4 9 0 2) ответ будет: 0 1 2 2 0 1
-a = [3, 1, 5, 4, 9, 0, 2]
-t1 = [1,4,5,2,3,0]
-t2 = [3,2,0,1,2,3,2,1]
-t3 = [2,1,0,1,2,3,4,0,1,2,4,7,0,0,3,10]
-t3 = [2,1,0,1,2,3,2,1,0,1,1,0,0,1,2,3,4,3,2,1,0]
-t4 = [2,1,0,1,2,3,4,5,0,1,1,0,0,1,2,3,4,3,2,1,0]
-  #   0 1 2 3 4 5 6 7 8
-  #   1 2 3 4 5 6 7 8 9
 
-def init_input():
-    street = t3
-    street_len = len(street)
-    result = []
-    max_index = street_len - 1
-    
+# Яндекс.Практикум, Python-разработчик: введение в алгоритмы. Финальные задачи.
+# A. Ближайший ноль
+# Время посылки: 18 мар 2023, 17:21:40
+# ID: 84200839
+# Выполнил: Свидунович Кирилл, когорта 52
+
+from typing import Tuple
+
+
+def get_input() -> Tuple:
+    """Получает значение длины улицы и расположение домов в ряд на ней."""
+    street_len: int = int(input())
+    street: list = list(map(int, (input().split())))
+    return street_len, street
+
+
+def count_distance(street_len: int, street: list):
+    """Выводит список расстояний до ближайшего 0 для каждого из участков."""
+    result: list = []
+    max_index: int = street_len - 1
     for plot_before_zero in range(street_len):
         if street[plot_before_zero] != 0:
             result.append(max_index - plot_before_zero)
         else:
             result.append(0)
-            last_zero = plot_before_zero
+            last_zero: int = plot_before_zero
             break
-    
     if plot_before_zero == max_index:
         return result
-    
     if plot_before_zero != 0:
-        dif = max_index - plot_before_zero
+        dif: int = max_index - plot_before_zero
         for _ in range(plot_before_zero):
             result[_] -= dif
-
-    i = 0
+    i: int = 0
     for plot in range(plot_before_zero + 1, street_len):
         if street[plot] != 0:
             i += 1
             result.append(i)
         else:
             result.append(0)
-            dif = (plot + last_zero) // 4
-            for k in range((plot + last_zero) // 2 + 1, plot):
-                print(f'k is {k}, dif is {dif}')
-                result[k] -= dif
-                dif += 1
+            renew_value: int = 0
+            for k in range(plot - 1, (plot + last_zero) // 2, -1):
+                renew_value += 1
+                result[k] = renew_value
             last_zero = plot
             i = 0
     return result
 
-print(init_input())
-            
+
+def main():
+    """Для каждого из участков выводит расстояние до ближайшего нуля."""
+    street_len, street = get_input()
+    result: list = count_distance(street_len=street_len, street=street)
+    print(' '.join(map(str, result)))
+
+
+if __name__ == '__main__':
+    main()
+
+
+
+
 
 
 
@@ -590,64 +603,60 @@ print(init_input())
 2 . . 2
 """
 
-# from typing import Dict, Tuple
+# Яндекс.Практикум, Python-разработчик: введение в алгоритмы. Финальные задачи.
+# B. Ловкость рук
+# Время посылки: 18 мар 2023, 12:16:11
+# ID: 84178118
+# Выполнил: Свидунович Кирилл, когорта 52
 
-# GAMERS: int = 2
-# FIELD_ROWS: int = 4
-# ZERO_CHAR: str = '.'
-# T = range(1, 9 + 1)
+from typing import Dict, Tuple
 
-
-# def init_input() -> Tuple:
-#     """Получает значение k и количество символов на поле."""
-#     max_nums_at_time: int = int(input()) * GAMERS
-#     chars_count: Dict[str, int] = {
-#         ZERO_CHAR: 0,
-#         '1': 0,
-#         '2': 0,
-#         '3': 0,
-#         '4': 0,
-#         '5': 0,
-#         '6': 0,
-#         '7': 0,
-#         '8': 0,
-#         '9': 0}
-#     for _ in range(FIELD_ROWS):
-#         row: str = input()
-#         for char in row:
-#             if char != ZERO_CHAR:
-#                 chars_count[char] += 1
-#     return max_nums_at_time, chars_count
+GAMERS: int = 2
+FIELD_ROWS: int = 4
+ZERO_CHAR: str = '.'
+T = range(1, 9 + 1)
 
 
-# def count_points(max_nums_at_time: int, chars_count:Dict[str,int]) -> str:
-#     """Вычисляет максимальное количество баллов."""
-#     result: int = 0
-#     for _ in T:
-#         if 0 < chars_count[str(_)] <= max_nums_at_time:
-#             result += 1
-#     return result
+def init_input() -> Tuple:
+    """Получает значение k и количество символов на поле."""
+    max_nums_at_time: int = int(input()) * GAMERS
+    chars_count: Dict[str, int] = {
+        ZERO_CHAR: 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0}
+    for _ in range(FIELD_ROWS):
+        row: str = input()
+        for char in row:
+            if char != ZERO_CHAR:
+                chars_count[char] += 1
+    return max_nums_at_time, chars_count
 
 
-# def main():
-#     max_nums_at_time, chars_count = init_input()
-#     print(count_points(
-#         max_nums_at_time=max_nums_at_time, chars_count=chars_count))
+def count_points(max_nums_at_time: int, chars_count: Dict[str, int]) -> str:
+    """Вычисляет максимальное количество баллов."""
+    result: int = 0
+    for _ in T:
+        if 0 < chars_count[str(_)] <= max_nums_at_time:
+            result += 1
+    return result
 
 
-# if __name__ == '__main__':
-#     main()
-
-# # Яндекс.Практикум, Python-разработчик: введение в алгоритмы. Финальные задачи
-# # B. Ловкость рук
-# # Время посылки: 18 мар 2023, 12:16:11
-# # ID: 84178118
+def main():
+    """Выводит максимальное количество баллов, которое можно набрать."""
+    max_nums_at_time, chars_count = init_input()
+    print(count_points(
+        max_nums_at_time=max_nums_at_time, chars_count=chars_count))
 
 
-
-
-
-
+if __name__ == '__main__':
+    main()
 
 
 
