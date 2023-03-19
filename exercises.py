@@ -545,8 +545,8 @@ def count_distance(street_len: int, street: list):
         return result
     if plot_before_zero != 0:
         dif: int = max_index - plot_before_zero
-        for _ in range(plot_before_zero):
-            result[_] -= dif
+        for plot_renew in range(plot_before_zero):
+            result[plot_renew] -= dif
     i: int = 0
     for plot in range(plot_before_zero + 1, street_len):
         if street[plot] != 0:
@@ -555,9 +555,9 @@ def count_distance(street_len: int, street: list):
         else:
             result[plot] = 0
             renew_value: int = 0
-            for k in range(plot - 1, (plot + last_zero) // 2, -1):
+            for plot_renew in range(plot - 1, (plot + last_zero) // 2, -1):
                 renew_value += 1
-                result[k] = renew_value
+                result[plot_renew] = renew_value
             last_zero = plot
             i = 0
     return result
