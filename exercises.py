@@ -516,9 +516,11 @@ from decorators import time_measure_decorator
 
 # Яндекс.Практикум, Python-разработчик: введение в алгоритмы. Финальные задачи.
 # A. Ближайший ноль
-# Время посылки: 18 мар 2023, 17:21:40
-# ID: 84200839
+# Время посылки: 19 мар 2023, 13:45:10
+# ID: 84235511
 # Выполнил: Свидунович Кирилл, когорта 52
+
+# С исправлениями для первого ревью
 
 from typing import Tuple
 
@@ -526,7 +528,7 @@ from typing import Tuple
 def get_input() -> Tuple:
     """Получает значение длины улицы и расположение домов в ряд на ней."""
     street_len: int = int(input())
-    street: list = list(map(int, (input().split())))
+    street: list = [int(_) for _ in input().split()]
     return street_len, street
 
 
