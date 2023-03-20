@@ -11,7 +11,7 @@ def main():
 
 
         a += 1
-    # print(result)
+    print(result)
 
 @time_measure_decorator
 def main_2():
@@ -24,7 +24,7 @@ def main_2():
 
     
         a += 1
-    # print(result)
+    print(result)
 
 if __name__ == '__main__':
     main()
