@@ -535,18 +535,8 @@ from decorators import time_measure_decorator
 Например, для длины улицы 7 (0 1 5 4 9 0 2) ответ будет: 0 1 2 2 0 1
 """
 
-# Яндекс.Практикум, Python-разработчик: введение в алгоритмы. Финальные задачи.
-# A. Ближайший ноль
-# Время посылки: 19 мар 2023, 13:45:10
-# ID: 84235511
-# Выполнил: Свидунович Кирилл, когорта 52
 
-# С исправлениями для первого ревью
-
-# from typing import Tuple
-
-
-# def get_input() -> Tuple:
+# def get_input() -> tuple:
 #     """Получает значение длины улицы и расположение домов в ряд на ней."""
 #     street_len: int = int(input())
 #     street: list = [int(_) for _ in input().split()]
@@ -616,26 +606,16 @@ from decorators import time_measure_decorator
 2 . . 2
 """
 
-# Яндекс.Практикум, Python-разработчик: введение в алгоритмы. Финальные задачи
-# B. Ловкость рук
-# Время посылки: 19 мар 2023, 12:47:44
-# ID: 84231810
-# Выполнил: Свидунович Кирилл, когорта 52
-
-# С исправлениями для первого ревью
-
-# from typing import Dict, Tuple
-
 # GAMERS: int = 2
 # FIELD_ROWS: int = 4
 # ZERO_CHAR: str = '.'
 # T = range(1, 9 + 1)
 
 
-# def init_input() -> Tuple:
+# def init_input() -> tuple:
 #     """Получает значение k и количество символов на поле."""
 #     max_nums_at_time: int = int(input()) * GAMERS
-#     chars_count = {str(num): 0 for num in range(1, 10)}
+#     chars_count: dict[str, int] = {str(num): 0 for num in range(1, 10)}
 #     chars_count['ZERO_CHAR'] = 0
 #     for _ in range(FIELD_ROWS):
 #         row: str = input()
@@ -645,7 +625,7 @@ from decorators import time_measure_decorator
 #     return max_nums_at_time, chars_count
 
 
-# def count_points(max_nums_at_time: int, chars_count: Dict[str, int]) -> str:
+# def count_points(max_nums_at_time: int, chars_count: dict[str, int]) -> str:
 #     """Вычисляет максимальное количество баллов."""
 #     result: int = 0
 #     for second in T:
