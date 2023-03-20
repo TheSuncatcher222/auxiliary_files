@@ -1,23 +1,24 @@
 from decorators import time_measure_decorator
 
 # Может быть оставлять комментарии, почему где-то так, а не иначе?
+# Mock тесты?
 
 """Задача.
 Для заданных коэффициентов уравнения вида ax^2 + bx + c = 0 найти его корни.
-Числа являются целочисленными, ввод данных осуществляется через пробел,
-всегда указывается 3 числа. Ответ вывести строкой, указать корни через пробел
-в порядке возрастания.
+Гарантируется, что входными данными будут три целочисленных числа, указанные
+через пробел. Ответ необходимо вывести строкой, указав числа через пробел
+в порядке их возрастания.
 """
 
-# Примеры с ответами для тестов:
-# Вход: 0 0 0; Ответ: Бесконечное множество решений
-# Вход: 0 0 5; Ответ: Нет решений
-# Вход: 0 5 5; Ответ: Один корень: -1.0
-# Вход: 2 1 4; Ответ: Нет решений
-# Вход: 2 4 2; Ответ: Один корень: -1.0
-# Вход: 2 5 2; Ответ: Два корня: -0.5 и -2.0
+# """Примеры с ответами для тестов со всеми условиями."""
+# INPUT_1: str = '0 0 0' # Бесконечное множество решений
+# INPUT_2: str = '0 0 5' # Нет решений
+# INPUT_3: str = '0 5 5' # Один корень: -1.0
+# INPUT_4: str = '2 1 4' # Нет решений
+# INPUT_5: str = '2 4 2' # Один корень: -1.0
+# INPUT_6: str = '2 5 2' # Два корня: -0.5 и -2.0
 
-# INPUT: str = '2 5 2'
+# INPUT: str = INPUT_1
 
 
 # def read_input() -> tuple:
@@ -44,7 +45,8 @@ from decorators import time_measure_decorator
 #     return x1, x2
 
 
-# def solve_equation(a, b, c):
+# def solve_equation(a, b, c) -> str or int or tuple:
+#     """Solve given equation."""
 #     if a == 0:
 #         if c == 0:
 #             return '∞'
@@ -64,183 +66,238 @@ from decorators import time_measure_decorator
 #         return str(answer)
 
 
-# input = read_input()
-# a = input[0]
-# b = input[1]
-# c = input[2]
-# answer: any = solve_equation(a=a, b=b, c=c)
-# print(reformat_answer(answer=answer))
+# def main():
+#     a, b, c = read_input()
+#     answer: any = solve_equation(a=a, b=b, c=c)
+#     print(reformat_answer(answer=answer))
 
 
+# if __name__ == '__main__':
+#     main()
+
+"""Задача.
+Двухмерный остров состоит из столбцов различной высоты. Над островом прошел
+дождь и заполнил водой все низины, а не поместившаяся вода утекла в море, не
+увеличив его уровень. По ландшафту острова определите, сколько блоков воды
+суммарно осталось в низинах. Ответ выведите одним числом.
+"""
+
+# """Примеры с ответами для тестов:
+# Для острова '3 1 4 3 5 1 1 3 1' ответ будет 7.
+#     #
+#   #/#
+# #/###//#
+# #/###//#
+# #########
+
+# Для острова '3 1 4 3 5 1 1 2 5 1 1 4 3 2 1' ответ будет 20.
+#     #///#
+#   #/#///#//#
+# #/###///#//##
+# #/###//##//###
+# ###############
+# """
+
+# INPUT_1 = '3 1 4 3 5 1 1 3 1'              # 7
+# INPUT_2 = '3 1 4 3 5 1 1 2 5 1 1 4 3 2 1'  # 20
+# INPUT_3 = '5 1 5'                          # 4
+# INPUT_4 = '1 2 1'                          # 0
+# INPUT_5 = '1 1 1'                          # 0
+# INPUT_6 = '3 2 1'                          # 0
+# INPUT_7 = '1 2 3'                          # 0
+
+# INPUT: str = INPUT_1
 
 
+# def read_input() -> list:
+#     """Read input data."""
+#     alts: list = list(map(int, INPUT.split()))
+#     return alts
 
 
+# def get_max_alt_indexes(alts: list) -> tuple:
+#     """Get indexes for max values in island altitudes."""
+#     max_alt: int = 0
+#     max_alt_index: list = []
+#     for i in range(len(alts)):
+#         if alts[i] > max_alt:
+#             max_alt = alts[i]
+#             max_alt_index = [i]
+#         elif alts[i] == max_alt:
+#             max_alt_index.append(i)
+#     return max_alt_index
 
 
-
-""""""
-# alts = [3,1,4,3,5,1,1,3,1]
-
-# max_alt_index = 0
-# for i in range(1, len(alts)):
-#     if alts[i] > max_alt_index:
-#         max_alt_index = i
-
-# def count_volume(alt, range_limits):
-#     volume = 0
-#     for i in range_limits:
-#         al = alts[i]
-#         if al < alt:
-#             volume += alt - al
-#         if al > alt:
-#             alt = al
+# def count_vol_edge(alts: list, max_alt: int, range: range) -> int:
+#     """Count water volume on islands edge (before first maximum altitude)."""
+#     volume: int = 0
+#     for i in range:
+#         alt: int = alts[i]
+#         if alt < max_alt:
+#             volume += max_alt - alt
+#         elif alt > max_alt:
+#             max_alt = alt
 #     return volume
 
-# vol_1 = count_volume(alts[0], range(max_alt_index + 1))
-# vol_2 = count_volume(alts[len(alts)-1], range(len(alts)-1, max_alt_index, -1))
 
-# print(vol_1 + vol_2)
-
-
-
-
-
-
+# def count_vol_mid(alts: list, left_max: int, right_max: int) -> int:
+#     """Count water volume between maximum altitudes."""
+#     # It's a bit faster than: volume = 0 -> volume += max_alt - alts[i]
+#     volume = alts[left_max] * (right_max - left_max - 1)
+#     for alt in range(left_max + 1, right_max):
+#         volume -= alts[alt]
+#     return volume
 
 
+# def main():
+#     alts: list = read_input()
+#     max_alt_index: list = get_max_alt_indexes(alts=alts)
+#     vol_left: int = 0
+#     vol_mid: int = 0
+#     vol_right: int = 0
+#     if len(max_alt_index) != 1:
+#         for i in range(len(max_alt_index) - 1):
+#             vol_mid += count_vol_mid(
+#                 alts=alts,
+#                 left_max=max_alt_index[i],
+#                 right_max=max_alt_index[i+1])
+#     if max_alt_index[0] != 0:
+#         vol_left = count_vol_edge(
+#             alts=alts, max_alt=alts[0], range=range(max_alt_index[0] + 1))
+#     if max_alt_index[-1] != len(alts):
+#         vol_right = count_vol_edge(
+#             alts=alts,
+#             max_alt=alts[len(alts)-1],
+#             range=range(len(alts)-1, max_alt_index[-1], -1))
+#     print(vol_left + vol_mid + vol_right)
 
 
-# string = 'AAABCDD'
+# if __name__ == '__main__':
+#     main()
 
-# result = []
-# char = string[0]
-# char_count = 0
+"""Задача.
+Для заданной последовательности буквенных символов без пробелов вывести строку
+к виду: символ-количество-символ-количество-сим...
+"""
 
-# for cur in string:
-#     if cur == char:
-#         char_count += 1
-#     else:
-#         if char_count == 1:
-#             result.append(char)
+# """Примеры с ответами для тестов со всеми условиями."""
+# INPUT_1: str = 'AAABCDD'  # A3BCD2
+# INPUT_2: str = 'Z'        # Z
+# INPUT_3: str = 'XX'       # X2
+
+# INPUT: str = INPUT_1
+
+
+# def main():
+#     result = []
+#     char_fixed = INPUT[0]
+#     char_count = 0
+#     for char_current in INPUT:
+#         if char_current == char_fixed:
+#             char_count += 1
 #         else:
-#             result.append(f'{char}{char_count}')
-#         char_count = 1
-#         char = cur
-# if char_count == 1:
-#     result.append(char)
-# else:
-#     result.append(f'{char}{char_count}')
-# print(''.join(result))
+#             if char_count == 1:
+#                 result.append(char_fixed)
+#             else:
+#                 result.append(f'{char_fixed}{char_count}')
+#             char_count = 1
+#             char_fixed = char_current
+#     if char_count == 1:
+#         result.append(char_fixed)
+#     else:
+#         result.append(f'{char_fixed}{char_count}')
+#     print(''.join(result))
 
 
-
-
-
-
-
-# nums = list((i for i in range(0, 400, 10)))
-# x = 90
-# index_1 = 0
-# index_max = len(nums) - 1
-# results = []
-
-# while index_1 <= index_max - 1:
-#     if nums[index_1] <= x:
-#         index_2 = index_1
-#         while index_2 <= index_max:
-#             if (nums[index_2] <= x) and (nums[index_1] + nums[index_2] == x):
-#                 results.append((nums[index_1], nums[index_2]))
-#             index_2 += 1
-#     index_1 += 1
-        
-# print(results)
-
-
-
-
-
-
-
-
-
+# if __name__ == '__main__':
+#     main()
 
 """Задача.
 Для каждой из строки (имя пользователя) в массиве вывести список символов,
 которые не попадают под паттерн r'[\w.@+-]+', в единственном экземпляре.
 """
 
-# from re import sub
-# from decorators import time_measure_decorator
+# """Примеры с ответами для тестов со всеми условиями."""
+# # Username '{, ,}' contains forbidden symbols: {' ', '{', ',', '}'}
+# INPUT_1: str = '{, ,}'
+# # Username must have one character at least!
+# INPUT_2: str = ''
 
-# @time_measure_decorator
-# def username_check(username: str, pattern: str) -> str:
-#      """Печатает список символов, не попадающих под regexp выражение."""
-#      forbidden_symb = set(sub(pattern, '', username))
-#      if forbidden_symb:
-#           print(f"Username '{username}' contains forbidden symbols: "
-#                  f"{forbidden_symb}")
-#      elif username == '':
-#           print(f'Username must have one character at least!')
-#      else:
-#           print(f'Username "{username}" is OK!')
+# INPUT = INPUT_1
+
+# from re import sub
 
 # PATTERN = r'[\w.@+-]+'
-# username = '{, ,}'
-# username_check(username=username, pattern=PATTERN)
 
 
+# def username_check(username: str, pattern: str) -> str:
+#     """Печатает список символов, не попадающих под regexp выражение."""
+#     forbidden_symbols = set(sub(pattern, '', username))
+#     if forbidden_symbols:
+#         print(
+#             f"Username '{username}' contains forbidden symbols: "
+#             f"{forbidden_symbols}")
+#     elif username == '':
+#         print(f'Username must have one character at least!')
+#     else:
+#         print(f'Username "{username}" is OK!')
 
 
+# def main():
+#     username_check(username=INPUT, pattern=PATTERN)
 
 
-
-
-
+# if __name__ == '__main__':
+#     main()
 
 """Задача.
-Дано два числа X и Y без ведущих нулей. Необходимо проверить, можно ли 
-получить второе число из первого перестановкой цифр.
+Дано два числа без ведущих нулей, разделенные пробельным символом. Необходимо
+проверить, можно ли получить второе число (в т.ч. с ведущим нулем) из первого
+перестановкой цифр.
 """
 
-# def digits_checker(x: int, y: int) -> bool:
-#     """Проверяет, можно ли получить из числа X число Y перестановкой цифр."""
+# """Примеры с ответами для тестов со всеми условиями."""
+# INPUT_1: str = '134 341'  # True
+# INPUT_2: str = '112 111'  # False
+# INPUT_3: str = '3 33'     # False
 
-#     # От 0 до 9
-#     DIGITS: int = 10
+# INPUT = INPUT_3
 
-#     def __create_sorted_nums(num: int) -> list:
-#         """Упорядочивает подсчетом цифры в num."""
-#         num_digits = [0] * DIGITS
-#         while num != 0:
-#             num_digits[num % 10] += 1
-#             num = num // 10
-#         return num_digits
-    
-#     x_digits = __create_sorted_nums(x)
-#     y_digits = __create_sorted_nums(y)
-
-#     return all(x_digits[i] == y_digits[i] for i in range(DIGITS))
-
-# X, Y = 134, 341
-
-# print(digits_checker(x=X, y=Y))
+# DIGITS: int = 10
 
 
+# def read_input() -> list:
+#     """Read input data and return 2 numbers"""
+#     return list(map(int, INPUT.split()))
 
 
+# def create_sorted_nums(num: int) -> list:
+#     """Упорядочивает подсчетом цифры в num."""
+#     num_digits = [0] * DIGITS
+#     while num != 0:
+#         num_digits[num % 10] += 1
+#         num = num // 10
+#     return num_digits
 
 
+# def main():
+#     x, y = read_input()
+#     x_digits = create_sorted_nums(x)
+#     y_digits = create_sorted_nums(y)
+
+#     print(all(x_digits[i] == y_digits[i] for i in range(DIGITS)))
 
 
-
-
+# if __name__ == '__main__':
+#     main()
 
 """Задача.
-На шахматной доске N на N находятся M ладей (ладья бьет клетки на той же 
+На шахматной доске N на N находятся M ладей (ладья бьет клетки на той же
 горизонтали или вертикали до ближайшей занятой). Определите, сколько пар ладей
 бьют друг друга. Ладьи задаются парами числе I и J, обозначающих координаты.
 """
+
+# chess_rocks = [(2,8), (4,3), (7,5), (7,7), (7,8)]
 
 # def clash_counter(chess_rocks: list[int, int]) -> int:
 #     """Принимает на вход список ладей на шахматном поле, в котором для каждой
@@ -267,7 +324,7 @@ from decorators import time_measure_decorator
 #         for axis in (axis_x, axis_y)
 #         for key in axis if axis[key] > 1)
 
-#     # Для большого количества фигур лучше использовать циклы взамен генератора
+#     # Для большого количества объектов циклы выгоднее генераторов
 #     # clashes = 0
 #     # for axis in (axis_x, axis_y):
 #     #     for key in axis:
@@ -276,18 +333,7 @@ from decorators import time_measure_decorator
 
 #     return clashes
 
-# chess_rocks = [(2,8), (4,3), (7,5), (7,7), (7,8)]
-
 # print(clash_counter(chess_rocks))
-
-
-
-
-
-
-
-
-
 
 """Задача.
 Дана строка S. Выведите гистограмму как в примере (для "Hello world!"):
@@ -297,7 +343,7 @@ from decorators import time_measure_decorator
 #########
 !,Hdelorw
 
-Пробелы не учитываются, символы отсортированы в порядке увеличения кодов. 
+Пробелы не учитываются, символы отсортированы в порядке увеличения кодов.
 """
 
 # def char_gist(s: str) -> str:
@@ -310,7 +356,7 @@ from decorators import time_measure_decorator
 #             if char not in char_freq:
 #                 char_freq[char] = 0
 #             char_freq[char] += 1
-    
+
 #     lines_count = max(char_freq.values())
 #     text_lines = [''] * (lines_count + 1)
 #     for key in sorted(char_freq):
@@ -331,11 +377,6 @@ from decorators import time_measure_decorator
 # FORBIDDEN_CHARS = (' ',)
 
 # print(char_gist(S))
-
-
-
-from decorators import time_measure_decorator
-
 
 # inp = 333826595
 
@@ -396,10 +437,10 @@ from decorators import time_measure_decorator
 7 4 1
 2 7 0
 
-- В первой строке задано n — количество строк матрицы. 
-- Во второй — количество столбцов m. Числа m и n не превосходят 1000. 
-- В следующих n строках задана матрица. 
-Элементы матрицы — целые числа, по модулю не превосходящие 1000. 
+- В первой строке задано n — количество строк матрицы.
+- Во второй — количество столбцов m. Числа m и n не превосходят 1000.
+- В следующих n строках задана матрица. Элементы матрицы — целые числа, по
+модулю не превосходящие 1000.
 - В последних двух строках записаны координаты элемента,
 соседей которого нужно найти. Индексация начинается с нуля.
 """
@@ -454,16 +495,6 @@ from decorators import time_measure_decorator
 # rows, cols, matr, i, j = read_input()
 # print(' '.join(map(str, find_result(rows, cols, matr, i, j))))
 
-
-
-
-
-
-
-
-
-
-""""""
 # def get_input():
 # 	return input(), input()
 
@@ -488,15 +519,6 @@ from decorators import time_measure_decorator
 # text_1, text_2 = get_input()
 # print(find_letter(text_1, text_2))
 
-
-
-
-
-
-
-
-
-
 """Улица имеет длину n. Все участки на улице стоят в один ряд. Каждый участок
 или пустой, или имеет построенный обитаемый дом.
 
@@ -513,7 +535,6 @@ from decorators import time_measure_decorator
 Например, для длины улицы 7 (0 1 5 4 9 0 2) ответ будет: 0 1 2 2 0 1
 """
 
-
 # Яндекс.Практикум, Python-разработчик: введение в алгоритмы. Финальные задачи.
 # A. Ближайший ноль
 # Время посылки: 19 мар 2023, 13:45:10
@@ -522,67 +543,57 @@ from decorators import time_measure_decorator
 
 # С исправлениями для первого ревью
 
-from typing import Tuple
+# from typing import Tuple
 
 
-def get_input() -> Tuple:
-    """Получает значение длины улицы и расположение домов в ряд на ней."""
-    street_len: int = int(input())
-    street: list = [int(_) for _ in input().split()]
-    return street_len, street
+# def get_input() -> Tuple:
+#     """Получает значение длины улицы и расположение домов в ряд на ней."""
+#     street_len: int = int(input())
+#     street: list = [int(_) for _ in input().split()]
+#     return street_len, street
 
 
-def count_distance(street_len: int, street: list):
-    """Выводит список расстояний до ближайшего 0 для каждого из участков."""
-    result: list = [None] * street_len
-    max_index: int = street_len - 1
-    for plot_before_zero in range(street_len):
-        if street[plot_before_zero] != 0:
-            result[plot_before_zero] = max_index - plot_before_zero
-        else:
-            result[plot_before_zero] = 0
-            last_zero: int = plot_before_zero
-            break
-    if plot_before_zero == max_index:
-        return result
-    if plot_before_zero != 0:
-        dif: int = max_index - plot_before_zero
-        for plot_renew in range(plot_before_zero):
-            result[plot_renew] -= dif
-    i: int = 0
-    for plot in range(plot_before_zero + 1, street_len):
-        if street[plot] != 0:
-            i += 1
-            result[plot] = i
-        else:
-            result[plot] = 0
-            renew_value: int = 0
-            for plot_renew in range(plot - 1, (plot + last_zero) // 2, -1):
-                renew_value += 1
-                result[plot_renew] = renew_value
-            last_zero = plot
-            i = 0
-    return result
+# def count_distance(street_len: int, street: list):
+#     """Выводит список расстояний до ближайшего 0 для каждого из участков."""
+#     result: list = [None] * street_len
+#     max_index: int = street_len - 1
+#     for plot_before_zero in range(street_len):
+#         if street[plot_before_zero] != 0:
+#             result[plot_before_zero] = max_index - plot_before_zero
+#         else:
+#             result[plot_before_zero] = 0
+#             last_zero: int = plot_before_zero
+#             break
+#     if plot_before_zero == max_index:
+#         return result
+#     if plot_before_zero != 0:
+#         dif: int = max_index - plot_before_zero
+#         for plot_renew in range(plot_before_zero):
+#             result[plot_renew] -= dif
+#     i: int = 0
+#     for plot in range(plot_before_zero + 1, street_len):
+#         if street[plot] != 0:
+#             i += 1
+#             result[plot] = i
+#         else:
+#             result[plot] = 0
+#             renew_value: int = 0
+#             for plot_renew in range(plot - 1, (plot + last_zero) // 2, -1):
+#                 renew_value += 1
+#                 result[plot_renew] = renew_value
+#             last_zero = plot
+#             i = 0
+#     return result
 
 
-def main():
-    """Для каждого из участков выводит расстояние до ближайшего нуля."""
-    street_len, street = get_input()
-    result: list = count_distance(street_len=street_len, street=street)
-    print(' '.join(map(str, result)))
+# def main():
+#     street_len, street = get_input()
+#     result: list = count_distance(street_len=street_len, street=street)
+#     print(' '.join(map(str, result)))
 
 
-if __name__ == '__main__':
-    main()
-
-
-
-
-
-
-
-
-
+# if __name__ == '__main__':
+#     main()
 
 """Предоставлено поле (кнопки) 4x4. В каждой ячейке указана либо точка, либо
 цифра от 1 до 9. В каждый момент времени t (от 1 до 9) игрок должен
@@ -595,8 +606,8 @@ if __name__ == '__main__':
 
 В первой строке дано целое число k (1 ≤ k ≤ 5).
 В четырёх следующих строках заданы кнопки строки - по 4 символа в каждой без
-пробелов. Каждый символ – либо точка, либо цифра от 1 до 9. Символы одной строки
-идут подряд и не разделены пробелами.
+пробелов. Каждый символ – либо точка, либо цифра от 1 до 9. Символы одной
+строки идут подряд и не разделены пробелами.
 
 Например, для k = 3 и матрицы ниже ответ: 2
 1 2 3 1
@@ -613,42 +624,41 @@ if __name__ == '__main__':
 
 # С исправлениями для первого ревью
 
-from typing import Dict, Tuple
+# from typing import Dict, Tuple
 
-GAMERS: int = 2
-FIELD_ROWS: int = 4
-ZERO_CHAR: str = '.'
-T = range(1, 9 + 1)
-
-
-def init_input() -> Tuple:
-    """Получает значение k и количество символов на поле."""
-    max_nums_at_time: int = int(input()) * GAMERS
-    chars_count = {str(num): 0 for num in range(1, 10)}
-    chars_count['ZERO_CHAR'] = 0
-    for _ in range(FIELD_ROWS):
-        row: str = input()
-        for char in row:
-            if char != ZERO_CHAR:
-                chars_count[char] += 1
-    return max_nums_at_time, chars_count
+# GAMERS: int = 2
+# FIELD_ROWS: int = 4
+# ZERO_CHAR: str = '.'
+# T = range(1, 9 + 1)
 
 
-def count_points(max_nums_at_time: int, chars_count: Dict[str, int]) -> str:
-    """Вычисляет максимальное количество баллов."""
-    result: int = 0
-    for second in T:
-        if 0 < chars_count[str(second)] <= max_nums_at_time:
-            result += 1
-    return result
+# def init_input() -> Tuple:
+#     """Получает значение k и количество символов на поле."""
+#     max_nums_at_time: int = int(input()) * GAMERS
+#     chars_count = {str(num): 0 for num in range(1, 10)}
+#     chars_count['ZERO_CHAR'] = 0
+#     for _ in range(FIELD_ROWS):
+#         row: str = input()
+#         for char in row:
+#             if char != ZERO_CHAR:
+#                 chars_count[char] += 1
+#     return max_nums_at_time, chars_count
 
 
-def main():
-    """Выводит максимальное количество баллов, которое можно набрать."""
-    max_nums_at_time, chars_count = init_input()
-    print(count_points(
-        max_nums_at_time=max_nums_at_time, chars_count=chars_count))
+# def count_points(max_nums_at_time: int, chars_count: Dict[str, int]) -> str:
+#     """Вычисляет максимальное количество баллов."""
+#     result: int = 0
+#     for second in T:
+#         if 0 < chars_count[str(second)] <= max_nums_at_time:
+#             result += 1
+#     return result
 
 
-if __name__ == '__main__':
-    main()
+# def main():
+#     max_nums_at_time, chars_count = init_input()
+#     print(count_points(
+#         max_nums_at_time=max_nums_at_time, chars_count=chars_count))
+
+
+# if __name__ == '__main__':
+#     main()
