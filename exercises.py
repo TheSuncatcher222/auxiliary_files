@@ -336,95 +336,44 @@ from decorators import time_measure_decorator
 # print(clash_counter(chess_rocks))
 
 """Задача.
-Дана строка S. Выведите гистограмму как в примере (для "Hello world!"):
-
+Дана строка S. Выведите гистограмму как в примере ниже (для "Hello world!"),
+пробелы не учитываются, символы отсортированы в порядке увеличения кодов:
      #
      ##
 #########
 !,Hdelorw
-
-Пробелы не учитываются, символы отсортированы в порядке увеличения кодов.
 """
 
-# def char_gist(s: str) -> str:
+# INPUT = (
+#     'Twas brillig, and the slithy toves\n'
+#     'Did gyre and gimble in the wabe;\n'
+#     'All mimsy were the borogoves,\n'
+#     'And the mome raths outgrabe.')
+
+
+# def main() -> str:
 #     """Принимает текст и возвращает гистограмму использования символов."""
-
-#     char_freq = {}
-
-#     for char in s:
-#         if char not in FORBIDDEN_CHARS:
-#             if char not in char_freq:
-#                 char_freq[char] = 0
-#             char_freq[char] += 1
-
+#     char_freq: dict[str, int] = {}
+#     for char in INPUT:
+#         if char not in char_freq:
+#             char_freq[char] = 0
+#         char_freq[char] += 1
+#     char_freq.pop(' ')
 #     lines_count = max(char_freq.values())
 #     text_lines = [''] * (lines_count + 1)
+#     text_lines[0] += ''.join((char for char in sorted(char_freq)))
 #     for key in sorted(char_freq):
 #         for i in range(1, lines_count + 1):
 #             if char_freq[key] >= i:
 #                 text_lines[i] += '#'
 #             else:
 #                 text_lines[i] += ' '
-#     for char in sorted(char_freq):
-#         text_lines[0] += char
-#     text = ''
-#     for i in reversed(range(lines_count+1)):
-#         text += text_lines[i] + '\n'
-#     return text
+#     text = '\n'.join(text_lines[i] for i in reversed(range(lines_count+1)))
+#     print(text)
 
-# S = "Lil' Princess the Best!"
 
-# FORBIDDEN_CHARS = (' ',)
-
-# print(char_gist(S))
-
-# inp = 333826595
-
-# @time_measure_decorator
-# def get_factory_1(num):
-#      a = 1
-#      num_original = num
-#      while a < 100:
-#           num = num_original
-#           answer = []
-#           i = 2
-#           maximum = num ** (0.5)
-#           while i <= maximum:
-#                result = divmod(num, i)
-#                if result[1] == 0:
-#                     answer.append(i)
-#                     num //= i
-#                else:
-#                     i += 1
-#           if num > 1:
-#                answer.append(num)
-#           a += 1
-#      return ' '.join(map(str, answer))
-
-# print(get_factory_1(int(inp)))
-
-# @time_measure_decorator
-# def get_factory_2(num):
-#      a = 1
-#      num_original = num
-#      while a < 100:
-#           num = num_original
-#           answer = []
-#           i = 2
-#           while i * i <= num:
-#                result = divmod(num, i)
-#                if result[1] == 0:
-#                     answer.append(i)
-#                     num //= i
-#                else:
-#                     i += 1
-#           if num > 1:
-#                answer.append(num)
-#           a += 1
-#      return ' '.join(map(str, answer))
-
-# print(get_factory_2(int(inp)))
-
+# if __name__ == '__main__':
+#     main()
 
 """"Дана матрица. Для заданного элемента нужно вернуть список всех его
 соседей в возрастающем порядке через пробел. Соседним считается элемент,
@@ -642,3 +591,153 @@ from decorators import time_measure_decorator
 
 # if __name__ == '__main__':
 #     main()
+
+"""Задача.
+Существуют наклейки, на которых указаны числа. У одного коллекционера есть N
+наклеек, причем могут быть повторяющиеся. К нему пришли K людей, которые также
+собирают наклейки и хотели бы пополнить свою коллекцию за счет коллекционера.
+В первой строке ввода содержится число - количество наклеек коллекционера.
+Во второй строке через запятую перечислены вразнобой числа - наклейки
+коллекционера. В третьей строке - количество К людей. В четвертой строке указан
+минимальный номер pi, с которого включительно для коллекционера №i карточки не
+представляют интереса.
+Одной строкой для каждого человека необходимо вывести количество карточек
+коллекционера, которые представляют интерес.
+Каждому человеку не интересно иметь 2 одинаковых карточек. Помимо этого сейчас
+карточки не раздаются, цель - просто найти потенциально интересующие элементы
+коллекции."""
+
+# """Примеры с ответами для тестов."""
+# INPUT_1: list = [
+#     '1',
+#     '5',
+#     '2',
+#     '4 5']  # 0 1
+# INPUT_2: list = [
+#     '7',
+#     '100 1 50 50 100 50 0',
+#     '3',
+#     '300 0 75']  # 4 1 3
+
+# INPUT: list = INPUT_2
+
+
+# def read_input() -> tuple:
+#     """Read input data."""
+#     cards_quantity: int = int(INPUT[0])
+#     cards: list = list(map(int, INPUT[1].split()))
+#     peoples_quantity: int = int(INPUT[2])
+#     cards_required: list = list(map(int, INPUT[3].split()))
+#     return cards_quantity, cards, peoples_quantity, cards_required
+
+
+# def count_requirements(
+#         cards_quantity: int,
+#         cards: list,
+#         peoples_quantity: int,
+#         peoples_required: list[list[int, int]]) -> dict:
+#     answer: dict[int, int] = {i: 0 for i in range(peoples_quantity)}
+#     current_people: int = 0
+#     cards_available: int = 0
+#     card_previous: int = -1
+#     current_card_index: int = 0
+#     while current_card_index < cards_quantity:
+#         card: int = cards[current_card_index]
+#         if card == card_previous:
+#             current_card_index += 1
+#         elif card <= peoples_required[current_people][1]:
+#             cards_available += 1
+#             current_card_index += 1
+#             card_previous = card
+#         else:
+#             answer[peoples_required[current_people][0]] = cards_available
+#             current_people += 1
+#     answer[peoples_required[current_people][0]] = cards_available
+#     return answer
+
+
+# def main():
+#     cards_quantity, cards, peoples_quantity, cards_required = read_input()
+#     cards.sort()
+#     peoples_required = []
+#     for i in range(peoples_quantity):
+#         peoples_required.append([i, cards_required[i]])
+#     peoples_required = sorted(peoples_required, key=lambda people: people[1])
+#     answer = count_requirements(
+#         cards_quantity, cards, peoples_quantity, peoples_required)
+#     print(' '.join(map(str, answer.values())))
+
+
+# if __name__ == '__main__':
+#     main()
+
+""""""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# """Задача.
+# Красотой строки назовем максимальное число идущих подряд одинаковых букв.
+# В заданной строке допускается заменить не более k символов (имеется ввиду не
+# поменять символы в строке местами, а заменить символ независимо от других).
+# Выведите одно число — максимально возможную красоту строчки, которую возможно
+# получить. В качестве исходных данных через пробельный символ указывается
+# максимальное допустимое количество замен k и непустая строка, состоящая
+# только из маленьких латинских букв (без пробелов)."""
+
+# INPUT = '3 heltoh'
+
+# def main():
+#     changes, text = INPUT.split()
+#     text_length = len(text)
+#     changes = int(changes)
+#     if changes >= text_length - 1:
+#         return len(text)
+#     chars = {}
+#     #for char in input():
+#     i = 0
+#     for char in text:
+#         if char not in chars:
+#             chars[char] = []
+#         chars[char].append(i)
+#         i += 1
+#     beauty = changes + 1
+#     for char_indexes in chars.values():
+#         if len(char_indexes) == 1:
+#             continue
+#         current_beauty = 1
+#         index_spaces = []
+#         for i in range(len(char_indexes) - 1):
+#             index_spaces.append(char_indexes[i+1] - char_indexes[i] - 1)
+#         delete_index = 0
+#         for i in range(len(index_spaces)):
+#             current_beauty += index_spaces[i] + 1
+#             # if current_beauty > beauty:
+#             #     beauty = current_beauty
+#             if current_beauty <= changes
+
+#             elif current_beauty > changes:
+#                 current_beauty -+ index_spaces[delete_index]
+#                 delete_index += 1
+#         break
+
+
+# main()
