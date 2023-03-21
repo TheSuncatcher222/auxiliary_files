@@ -261,7 +261,7 @@ from decorators import time_measure_decorator
 # INPUT_2: str = '112 111'  # False
 # INPUT_3: str = '3 33'     # False
 
-# INPUT = INPUT_3
+# INPUT = INPUT_1
 
 # DIGITS: int = 10
 
@@ -275,8 +275,9 @@ from decorators import time_measure_decorator
 #     """Упорядочивает подсчетом цифры в num."""
 #     num_digits = [0] * DIGITS
 #     while num != 0:
-#         num_digits[num % 10] += 1
-#         num = num // 10
+#         div_num = divmod(num, 10)
+#         num_digits[div_num[1]] += 1
+#         num = div_num[0]
 #     return num_digits
 
 
