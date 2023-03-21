@@ -359,6 +359,9 @@ from decorators import time_measure_decorator
 #         if char not in char_freq:
 #             char_freq[char] = 0
 #         char_freq[char] += 1
+#     # Быстрее пропускать символ в словарь, а потом удалить запись, чем
+#     # проверять каждый символ на то, является ли он пробелом (при условии,
+#     # что пробелов в основной массе не так много).
 #     char_freq.pop(' ')
 #     lines_count = max(char_freq.values())
 #     text_lines = [''] * (lines_count + 1)
@@ -371,6 +374,31 @@ from decorators import time_measure_decorator
 #                 text_lines[i] += ' '
 #     text = '\n'.join(text_lines[i] for i in reversed(range(lines_count+1)))
 #     print(text)
+
+
+# if __name__ == '__main__':
+#     main()
+
+"""Необходимо сгруппировать все приведенные слова по общим буквам и вывести
+каждую группу на новой строке. Слова указываются только строчными буквами,
+через пробел."""
+
+# """Примеры с ответами для тестов."""
+# INPUT_1: str = 'eat tea tan ate nat bat'  # ate eat tea \n nat tan n bat
+
+# INPUT: str = INPUT_1
+
+
+# def main():
+#     words: str = INPUT.split()
+#     groups: dict[str, str] = {}
+#     for word in words:
+#         word_sorted = ''.join(sorted(word))
+#         if word_sorted not in groups:
+#             groups[word_sorted] = []
+#         groups[word_sorted].append(word)
+#     for group in groups:
+#         print(' '.join(word for word in groups[group]))
 
 
 # if __name__ == '__main__':
