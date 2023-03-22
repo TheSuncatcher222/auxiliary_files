@@ -3,340 +3,8 @@ from decorators import time_measure_decorator
 # Может быть оставлять комментарии, почему где-то так, а не иначе?
 # Mock тесты?
 
-"""Задача.
-Для заданных коэффициентов уравнения вида ax^2 + bx + c = 0 найти его корни.
-Гарантируется, что входными данными будут три целочисленных числа, указанные
-через пробел. Ответ необходимо вывести строкой, указав числа через пробел
-в порядке их возрастания.
+
 """
-
-# """Примеры с ответами для тестов со всеми условиями."""
-# INPUT_1: str = '0 0 0' # Бесконечное множество решений
-# INPUT_2: str = '0 0 5' # Нет решений
-# INPUT_3: str = '0 5 5' # Один корень: -1.0
-# INPUT_4: str = '2 1 4' # Нет решений
-# INPUT_5: str = '2 4 2' # Один корень: -1.0
-# INPUT_6: str = '2 5 2' # Два корня: -0.5 и -2.0
-
-# INPUT: str = INPUT_1
-
-
-# def read_input() -> tuple:
-#     """Read input data."""
-#     nums: list = INPUT.split()
-#     a: int = int(nums[0])
-#     b: int = int(nums[1])
-#     c: int = int(nums[2])
-#     return a, b, c
-
-
-# def solve_square(a: int, b: int, c: int) -> tuple or int or None:
-#     """Solve square equation."""
-#     disc: int = b * b - 4 * a * c
-#     if disc < 0:
-#         return None
-#     # Optimize formula: (-b + disc ** 0.5) / (2 * a)
-#     disc_sqrt = disc ** 0.5
-#     disc_const = -b / (2 * a)
-#     x1 = disc_const + disc_sqrt / (2 * a)
-#     if disc == 0:
-#         return x1
-#     x2 = disc_const - disc_sqrt / (2 * a)
-#     return x1, x2
-
-
-# def solve_equation(a, b, c) -> str or int or tuple:
-#     """Solve given equation."""
-#     if a == 0:
-#         if c == 0:
-#             return '∞'
-#         elif b == 0:
-#             return f'Error! Given equation is: {c} = 0'
-#         return - b / c
-#     return solve_square(a, b, c)
-
-
-# def reformat_answer(answer: any) -> str or None:
-#     """Reformat answer to desire string."""
-#     if answer is None or isinstance(answer, str):
-#         return answer
-#     elif isinstance(answer, tuple):
-#         return ' '.join(map(str, sorted(answer)))
-#     elif isinstance(answer, float):
-#         return str(answer)
-
-
-# def main():
-#     a, b, c = read_input()
-#     answer: any = solve_equation(a=a, b=b, c=c)
-#     print(reformat_answer(answer=answer))
-
-
-# if __name__ == '__main__':
-#     main()
-
-"""Задача.
-Двухмерный остров состоит из столбцов различной высоты. Над островом прошел
-дождь и заполнил водой все низины, а не поместившаяся вода утекла в море, не
-увеличив его уровень. По ландшафту острова определите, сколько блоков воды
-суммарно осталось в низинах. Ответ выведите одним числом.
-"""
-
-# """Примеры с ответами для тестов:
-# Для острова '3 1 4 3 5 1 1 3 1' ответ будет 7.
-#     #
-#   #/#
-# #/###//#
-# #/###//#
-# #########
-
-# Для острова '3 1 4 3 5 1 1 2 5 1 1 4 3 2 1' ответ будет 20.
-#     #///#
-#   #/#///#//#
-# #/###///#//##
-# #/###//##//###
-# ###############
-# """
-
-# INPUT_1 = '3 1 4 3 5 1 1 3 1'              # 7
-# INPUT_2 = '3 1 4 3 5 1 1 2 5 1 1 4 3 2 1'  # 20
-# INPUT_3 = '5 1 5'                          # 4
-# INPUT_4 = '1 2 1'                          # 0
-# INPUT_5 = '1 1 1'                          # 0
-# INPUT_6 = '3 2 1'                          # 0
-# INPUT_7 = '1 2 3'                          # 0
-
-# INPUT: str = INPUT_1
-
-
-# def read_input() -> list:
-#     """Read input data."""
-#     alts: list = list(map(int, INPUT.split()))
-#     return alts
-
-
-# def get_max_alt_indexes(alts: list) -> tuple:
-#     """Get indexes for max values in island altitudes."""
-#     max_alt: int = 0
-#     max_alt_index: list = []
-#     for i in range(len(alts)):
-#         if alts[i] > max_alt:
-#             max_alt = alts[i]
-#             max_alt_index = [i]
-#         elif alts[i] == max_alt:
-#             max_alt_index.append(i)
-#     return max_alt_index
-
-
-# def count_vol_edge(alts: list, max_alt: int, range: range) -> int:
-#     """Count water volume on islands edge (before first maximum altitude)."""
-#     volume: int = 0
-#     for i in range:
-#         alt: int = alts[i]
-#         if alt < max_alt:
-#             volume += max_alt - alt
-#         elif alt > max_alt:
-#             max_alt = alt
-#     return volume
-
-
-# def count_vol_mid(alts: list, left_max: int, right_max: int) -> int:
-#     """Count water volume between maximum altitudes."""
-#     # It's a bit faster than: volume = 0 -> volume += max_alt - alts[i]
-#     volume = alts[left_max] * (right_max - left_max - 1)
-#     for alt in range(left_max + 1, right_max):
-#         volume -= alts[alt]
-#     return volume
-
-
-# def main():
-#     alts: list = read_input()
-#     max_alt_index: list = get_max_alt_indexes(alts=alts)
-#     vol_left: int = 0
-#     vol_mid: int = 0
-#     vol_right: int = 0
-#     if len(max_alt_index) != 1:
-#         for i in range(len(max_alt_index) - 1):
-#             vol_mid += count_vol_mid(
-#                 alts=alts,
-#                 left_max=max_alt_index[i],
-#                 right_max=max_alt_index[i+1])
-#     if max_alt_index[0] != 0:
-#         vol_left = count_vol_edge(
-#             alts=alts, max_alt=alts[0], range=range(max_alt_index[0] + 1))
-#     if max_alt_index[-1] != len(alts):
-#         vol_right = count_vol_edge(
-#             alts=alts,
-#             max_alt=alts[len(alts)-1],
-#             range=range(len(alts)-1, max_alt_index[-1], -1))
-#     print(vol_left + vol_mid + vol_right)
-
-
-# if __name__ == '__main__':
-#     main()
-
-"""Задача.
-Для заданной последовательности буквенных символов без пробелов вывести строку
-к виду: символ-количество-символ-количество-сим...
-"""
-
-# """Примеры с ответами для тестов со всеми условиями."""
-# INPUT_1: str = 'AAABCDD'  # A3BCD2
-# INPUT_2: str = 'Z'        # Z
-# INPUT_3: str = 'XX'       # X2
-
-# INPUT: str = INPUT_1
-
-
-# def main():
-#     result = []
-#     char_fixed = INPUT[0]
-#     char_count = 0
-#     for char_current in INPUT:
-#         if char_current == char_fixed:
-#             char_count += 1
-#         else:
-#             if char_count == 1:
-#                 result.append(char_fixed)
-#             else:
-#                 result.append(f'{char_fixed}{char_count}')
-#             char_count = 1
-#             char_fixed = char_current
-#     if char_count == 1:
-#         result.append(char_fixed)
-#     else:
-#         result.append(f'{char_fixed}{char_count}')
-#     print(''.join(result))
-
-
-# if __name__ == '__main__':
-#     main()
-
-"""Задача.
-Для каждой из строки (имя пользователя) в массиве вывести список символов,
-которые не попадают под паттерн r'[\w.@+-]+', в единственном экземпляре.
-"""
-
-# """Примеры с ответами для тестов со всеми условиями."""
-# # Username '{, ,}' contains forbidden symbols: {' ', '{', ',', '}'}
-# INPUT_1: str = '{, ,}'
-# # Username must have one character at least!
-# INPUT_2: str = ''
-
-# INPUT = INPUT_1
-
-# from re import sub
-
-# PATTERN = r'[\w.@+-]+'
-
-
-# def username_check(username: str, pattern: str) -> str:
-#     """Печатает список символов, не попадающих под regexp выражение."""
-#     forbidden_symbols = set(sub(pattern, '', username))
-#     if forbidden_symbols:
-#         print(
-#             f"Username '{username}' contains forbidden symbols: "
-#             f"{forbidden_symbols}")
-#     elif username == '':
-#         print(f'Username must have one character at least!')
-#     else:
-#         print(f'Username "{username}" is OK!')
-
-
-# def main():
-#     username_check(username=INPUT, pattern=PATTERN)
-
-
-# if __name__ == '__main__':
-#     main()
-
-"""Задача.
-Дано два числа без ведущих нулей, разделенные пробельным символом. Необходимо
-проверить, можно ли получить второе число (в т.ч. с ведущим нулем) из первого
-перестановкой цифр.
-"""
-
-# """Примеры с ответами для тестов со всеми условиями."""
-# INPUT_1: str = '134 341'  # True
-# INPUT_2: str = '112 111'  # False
-# INPUT_3: str = '3 33'     # False
-
-# INPUT = INPUT_1
-
-# DIGITS: int = 10
-
-
-# def read_input() -> list:
-#     """Read input data and return 2 numbers"""
-#     return list(map(int, INPUT.split()))
-
-
-# def create_sorted_nums(num: int) -> list:
-#     """Упорядочивает подсчетом цифры в num."""
-#     num_digits = [0] * DIGITS
-#     while num != 0:
-#         div_num = divmod(num, 10)
-#         num_digits[div_num[1]] += 1
-#         num = div_num[0]
-#     return num_digits
-
-
-# def main():
-#     x, y = read_input()
-#     x_digits = create_sorted_nums(x)
-#     y_digits = create_sorted_nums(y)
-
-#     print(all(x_digits[i] == y_digits[i] for i in range(DIGITS)))
-
-
-# if __name__ == '__main__':
-#     main()
-
-"""Задача.
-На шахматной доске N на N находятся M ладей (ладья бьет клетки на той же
-горизонтали или вертикали до ближайшей занятой). Определите, сколько пар ладей
-бьют друг друга. Ладьи задаются парами числе I и J, обозначающих координаты.
-"""
-
-# chess_rocks = [(2,8), (4,3), (7,5), (7,7), (7,8)]
-
-# def clash_counter(chess_rocks: list[int, int]) -> int:
-#     """Принимает на вход список ладей на шахматном поле, в котором для каждой
-#     указаны координаты нахождения на шахматной доске, и возвращает количество
-#     пар ладей, которые бьют друг друга. Размер поля n на n."""
-
-#     def __axis_check(axis: dict, coordinate_num: int):
-#         coordinate = rock[coordinate_num]
-#         if coordinate not in axis:
-#             axis[coordinate] = 0
-#         axis[coordinate] += 1
-#         return axis
-
-#     axisx = {}
-#     axisy = {}
-
-#     for rock in chess_rocks:
-#         axis_x = __axis_check(axis=axisx, coordinate_num=0)
-#         axis_y = __axis_check(axis=axisy, coordinate_num=1)
-
-#     # Для малого количества фигур допускается использовать генератор
-#     clashes = sum(
-#         (axis[key] - 1)
-#         for axis in (axis_x, axis_y)
-#         for key in axis if axis[key] > 1)
-
-#     # Для большого количества объектов циклы выгоднее генераторов
-#     # clashes = 0
-#     # for axis in (axis_x, axis_y):
-#     #     for key in axis:
-#     #         if axis[key] > 1:
-#     #             clashes += axis[key] - 1
-
-#     return clashes
-
-# print(clash_counter(chess_rocks))
-
-"""Задача.
 Дана строка S. Выведите гистограмму как в примере ниже (для "Hello world!"),
 пробелы не учитываются, символы отсортированы в порядке увеличения кодов:
      #
@@ -379,9 +47,11 @@ from decorators import time_measure_decorator
 # if __name__ == '__main__':
 #     main()
 
-"""Необходимо сгруппировать все приведенные слова по общим буквам и вывести
+"""
+Необходимо сгруппировать все приведенные слова по общим буквам и вывести
 каждую группу на новой строке. Слова указываются только строчными буквами,
-через пробел."""
+через пробел.
+"""
 
 # """Примеры с ответами для тестов."""
 # INPUT_1: str = 'eat tea tan ate nat bat'  # ate eat tea \n nat tan n bat
@@ -404,7 +74,8 @@ from decorators import time_measure_decorator
 # if __name__ == '__main__':
 #     main()
 
-""""Дана матрица. Для заданного элемента нужно вернуть список всех его
+""""
+Дана матрица. Для заданного элемента нужно вернуть список всех его
 соседей в возрастающем порядке через пробел. Соседним считается элемент,
 находящийся от текущего на одну ячейку влево, вправо, вверх или вниз.
 Диагональные элементы соседними не считаются.
@@ -497,7 +168,8 @@ from decorators import time_measure_decorator
 # text_1, text_2 = get_input()
 # print(find_letter(text_1, text_2))
 
-"""Улица имеет длину n. Все участки на улице стоят в один ряд. Каждый участок
+"""
+Улица имеет длину n. Все участки на улице стоят в один ряд. Каждый участок
 или пустой, или имеет построенный обитаемый дом.
 
 Необходимо для каждого из участков указать расстояние до ближайшего пустого.
@@ -563,7 +235,8 @@ from decorators import time_measure_decorator
 # if __name__ == '__main__':
 #     main()
 
-"""Предоставлено поле (кнопки) 4x4. В каждой ячейке указана либо точка, либо
+"""
+Предоставлено поле (кнопки) 4x4. В каждой ячейке указана либо точка, либо
 цифра от 1 до 9. В каждый момент времени t (от 1 до 9) игрок должен
 одновременно нажать на все кнопки, на которых указана цифра t. Если игрок
 сумел нажать все необходимые кнопки - он получает 1 балл. Игрок может
@@ -621,20 +294,24 @@ from decorators import time_measure_decorator
 # if __name__ == '__main__':
 #     main()
 
-"""Задача.
+"""
 Существуют наклейки, на которых указаны числа. У одного коллекционера есть N
 наклеек, причем могут быть повторяющиеся. К нему пришли K людей, которые также
 собирают наклейки и хотели бы пополнить свою коллекцию за счет коллекционера.
+
 В первой строке ввода содержится число - количество наклеек коллекционера.
 Во второй строке через запятую перечислены вразнобой числа - наклейки
 коллекционера. В третьей строке - количество К людей. В четвертой строке указан
 минимальный номер pi, с которого включительно для коллекционера №i карточки не
 представляют интереса.
+
 Одной строкой для каждого человека необходимо вывести количество карточек
 коллекционера, которые представляют интерес.
+
 Каждому человеку не интересно иметь 2 одинаковых карточек. Помимо этого сейчас
 карточки не раздаются, цель - просто найти потенциально интересующие элементы
-коллекции."""
+коллекции.
+"""
 
 # """Примеры с ответами для тестов."""
 # INPUT_1: list = [
@@ -700,17 +377,20 @@ from decorators import time_measure_decorator
 # if __name__ == '__main__':
 #     main()
 
-"""Задача.
+"""
 Количество учеников N пришло на контрольную. Все парты стоят в одну колонну.
 Учитель подготовил K вариантов заданий. За каждой партой (кроме, возможно,
 последней) будут находиться ровно 2 ученика. Варианты будут раздаваться строго
 по порядку: левый ученик первой парты получит 1й вариант, правый ученик первой
 парты второй, левый ученик второй парты получит 3й вариант (N > 2) и т.д.
+
 Отличник вошел первый в класс и занял случайное место. Двоечник хочет получить
 такой же вариант, как и отличник, и обязательно сидеть в ряду позади, а не
-перед отличником, при этом занять место как можно ближе. В ответе через запятую
-укажите номер ряда и номер позиции за партой (1 - слева, 2 - справа), куда
-необходимо сесть двоечнику. Если такого места нет, укажите "-1".
+перед отличником, при этом занять место как можно ближе. 
+
+В ответе через запятую укажите номер ряда и номер позиции за партой (1 - слева,
+2 - справа), куда следует сесть двоечнику. Если такого места нет, укажите "-1".
+
 В первой строке ввода находится количество учеников N. Во второй строке -
 количество подготовленных вариантов работ K. В третьей строке - номер ряда,
 куда сел отличник, в четвертой - положение за партой (1 - слева, 2 - справа).
@@ -763,11 +443,15 @@ from decorators import time_measure_decorator
 # if __name__ == '__main__':
 #     main()
 
-"""Хаотичность погоды за n дней понимается количество дней, в которые
+"""
+Хаотичность погоды за n дней понимается количество дней, в которые
 температура строго больше чем в день до (если существует) и в день после (если
-существует). Необходимо вывести единственным числом хаотичность погоды за
-данный период. В первой строке ввода указывается количество дней, во второй -
-температуры. Единственный день в периоде также является хаотичным."""
+существует).
+
+Необходимо вывести единственным числом хаотичность погоды за данный период.
+В первой строке ввода указывается количество дней, во второй - температуры.
+Единственный день в периоде также является хаотичным.
+"""
 
 # """Примеры с ответами для тестов."""
 # INPUT_1: list[str] = [  # 3
@@ -828,6 +512,106 @@ from decorators import time_measure_decorator
 
 # if __name__ == '__main__':
 #     main()
+
+"""
+Узник замка проделал в стене прямоугольное отверстие DxE. Замок сделан из
+прямоугольных кирпичей размеров AxBxC каждый.
+
+Для заданных A, B, C, D, E напишите True, если кирпич пройдет в отверстие и
+False - если нет. Все параметры представлены натуральными числами и указаны
+через пробел.
+"""
+
+# """Примеры с ответами для тестов."""
+# INPUT_1 = '10 20 20 20 10'  # True
+# INPUT_2 = '10 20 20 10 10'  # False
+
+# INPUT = INPUT_1
+
+# from sys import exit
+
+# def sort_two(first, second):
+#     if first > second:
+#         return second, first
+#     return first, second
+
+# def main():
+#     a, b, c, d, e = list(map(int, INPUT.split()))
+#     a, b = sort_two(a, b)
+#     b, c = sort_two(b, c)
+#     a, b = sort_two(a, b)
+#     d, e = sort_two(d, e)
+#     if a <= d and b <= e:
+#         print(True)
+#         exit()
+#     print(False)
+
+
+# if __name__ == '__main__':
+#     main()
+
+
+"""
+Для указанной последовательности чисел от 0 до 9, разделенных пробелом,
+необходимо определить, какое минимальное количество и каких чисел надо
+приписать в конец этой последовательности, чтобы она стала симметричной.
+
+В первой строке ответа укажите количество, а во второй приведите через пробел
+сами приписываемые числа в том порядке, в каком их надо добавить.
+"""
+
+# """Примеры с ответами для тестов."""
+# INPUT_1: str = '1 3 8 9 4 4 9'                 # 3 \n 8 3 1
+# INPUT_2: str = '1 3 8 9 4 3 1 4 9'             # 8 \n 4 1 3 4 9 8 3 1
+# INPUT_3: str = '1 1 1 1 1 1 1 1'               # 0 \n
+# INPUT_4: str = '1 2 1 3 1 2 1 4 1 2 1 3 1'     # 2 \т 2 1
+
+# INPUT: str = INPUT_4
+
+
+# def main():
+#     ans: list = [str]
+#     nums: list[str] = INPUT.split()
+#     nums_len: int = len(nums)
+#     for left in range(nums_len - 1):
+#         left_fix: int = left
+#         right: int = nums_len - 1
+#         while nums[left] == nums[right] and left <= right:
+#             left += 1
+#             right -= 1
+#         if left > right:
+#             break
+#         else:
+#             ans.insert(0, nums[left_fix])
+#     NL: str = '\n'
+#     print(f"{len(ans)}{NL}{' '.join(ans)}")
+
+
+# if __name__ == '__main__':
+#     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # """Задача.
 # Красотой строки назовем максимальное число идущих подряд одинаковых букв.
