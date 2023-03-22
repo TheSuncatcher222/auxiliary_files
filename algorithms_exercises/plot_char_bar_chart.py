@@ -7,6 +7,7 @@
 !,Hdelorw
 """
 
+"""Примеры с ответами для тестов со всеми условиями."""
 INPUT_1: str = 'Hello world!'
 INPUT_2: str = (
     'Twas brillig, and the slithy toves\n'
