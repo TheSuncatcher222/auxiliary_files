@@ -37,6 +37,7 @@ def find_nearest_seat(
         exc_count: int,
         lookup_row: int,
         lookup_seat: int) -> str or int:
+    """Find nearest seat."""
     lookup_seat_num: int = lookup_seat + 2 * (lookup_row - 1)
     lookup_exc: int = lookup_seat_num % exc_count
     if lookup_exc == 0:
