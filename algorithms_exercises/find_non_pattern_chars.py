@@ -17,7 +17,6 @@ PATTERN = r'[\w.@+-]+'
 
 
 def main() -> str:
-    """Печатает список символов, не попадающих под regexp выражение."""
     forbidden_symbols: set = set(sub(PATTERN, '', INPUT))
     if forbidden_symbols:
         print(
