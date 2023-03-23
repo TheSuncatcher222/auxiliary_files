@@ -12,19 +12,15 @@
 INPUT_1: list[str] = [  # 3
     '7',
     '-1 -10 -8 0 2 0 5']
-
 INPUT_2: list[str] = [  # 2
     '5',
     '1 2 5 4 8']
-
 INPUT_3: list[str] = [  # 1
     '1',
     '0']
-
 INPUT_4: list[str] = [  # 0
     '5',
     '1 1 1 1 1']
-
 INPUT_5: list[str] = [  # 0
     '5',
     '1 1 0 1 1']
@@ -33,7 +29,7 @@ INPUT: list[str] = INPUT_1
 
 
 def read_input() -> tuple[int, list[int]]:
-    """Read input data"""
+    """Read input data."""
     cnt_days: int = int(INPUT[0])
     temps: list[int] = list(map(int, INPUT[1].split()))
     return cnt_days, temps
