@@ -15,6 +15,7 @@ INPUT = INPUT_1
 
 
 def sort_two(first, second):
+    """Sort ascending two numbers."""
     if first > second:
         return second, first
     return first, second
