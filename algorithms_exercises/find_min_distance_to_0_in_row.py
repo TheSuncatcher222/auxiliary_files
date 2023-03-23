@@ -68,7 +68,7 @@ def count_distance(street_len: int, street: list):
 def main():
     street_len, street = get_input()
     result: list = count_distance(street_len=street_len, street=street)
-    print(' '.join(map(str, result)))
+    print(*result)
 
 
 if __name__ == '__main__':
