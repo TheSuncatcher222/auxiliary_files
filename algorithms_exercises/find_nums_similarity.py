@@ -20,7 +20,7 @@ def read_input() -> list:
 
 
 def create_sorted_nums(num: int) -> list:
-    """Упорядочивает подсчетом цифры в num."""
+    """Sort nums by counting."""
     num_digits: list = [0] * DIGITS
     while num != 0:
         div_num = divmod(num, 10)
