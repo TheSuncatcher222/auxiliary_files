@@ -94,8 +94,7 @@ def find_result(rows: int, cols: int, matrix: list, i: int, j: int) -> list:
 
 def main():
     rows, cols, matrix, i, j = read_input()
-    print(' '.join(map(str, find_result(
-        rows=rows, cols=cols, matrix=matrix, i=i, j=j))))
+    print(*find_result(rows=rows, cols=cols, matrix=matrix, i=i, j=j))
 
 
 if __name__ == '__main__':

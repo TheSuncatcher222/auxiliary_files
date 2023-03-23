@@ -77,7 +77,7 @@ def main():
         peoples_required, key=lambda people: people[1])
     answer: dict[int, int] = count_requirements(
         cards_quantity, cards, peoples_quantity, peoples_required)
-    print(' '.join(map(str, answer.values())))
+    print(*answer.values())
 
 
 if __name__ == '__main__':

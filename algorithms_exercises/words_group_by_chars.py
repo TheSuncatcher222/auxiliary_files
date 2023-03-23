@@ -19,7 +19,7 @@ def main():
             groups[word_sorted] = []
         groups[word_sorted].append(word)
     for group in groups:
-        print(' '.join(word for word in groups[group]))
+        print(*groups[group])
 
 
 if __name__ == '__main__':
