@@ -33,7 +33,6 @@ def main():
     x, y = read_input()
     x_digits: list = create_sorted_nums(x)
     y_digits: list = create_sorted_nums(y)
-
     print(all(x_digits[i] == y_digits[i] for i in range(DIGITS)))
 
 
