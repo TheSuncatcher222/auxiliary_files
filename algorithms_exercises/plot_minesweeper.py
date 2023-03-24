@@ -21,10 +21,11 @@
 # 0 0 0 0 0 0 1 * 2 1
 # 0 0 0 0 0 0 1 1 1 0
 INPUT_1: list[str] = [
-    '10 8 10',
+    '8 10 10',
     '1 2',
     '2 8',
     '3 4',
+    '4 2',
     '4 4',
     '4 6',
     '4 9',
@@ -39,46 +40,33 @@ def read_input() -> tuple[int, list[list[int]]]:
     """Read input data."""
     m, n, k = map(int, INPUT[0].split())
     mines: list[list[int]] = []
-    for i in range(1, k):
+    for i in range(1, k + 1):
         mines.append(list(map(int, INPUT[i].split())))
     return m, n, mines
 
 
 def fill_field(field_framed: list[list[int]], mines: list[list[int]]):
-    i, j = 0, 0
-    add_one: list[int] = [
-        [-1, -1], [-1, 0], [-1, 1],
-        [0, -1], [0, 1],
-        [1, -1], [1, 0], [1, 1]]
+    """"""
+    move_i: list[int] = [-1, -1, -1, 0, 0, 1, 1, 1]
+    move_j: list[int] = [-1, 0, 1, -1, 1, -1, 0, 1]
     for i, j in (mine for mine in mines):
-        for i_add, j_add in (add for add in add_one):
-            field_framed[i + i_add][j + j_add] += 1
-    # for i, j in (mine for mine in mines):
-    #     field_framed[i][j] = '*'
+        for add in range(8):
+            field_framed[i + move_i[add]][j + move_j[add]] += 1
+    for i, j in (mine for mine in mines):
+        field_framed[i][j] = '*'
     return field_framed
-
 
 
 def main():
     m, n, mines = read_input()
-    # Создадим "рамку" вокруг поля, которая не будет учтена в ответе, для тех
-    # индексов, который будут 'out of range'
-    #field_framed = [[0] * (m + 2)] * (n + 2)
-    #field_framed = fill_field(field_framed=field_framed, mines=mines)
-    #field_framed[1][1] = 1
-    field_framed = [[0]*2]*3
-    field_framed[0][0] = 1
-    print(field_framed)
-    field_framed = [
-        [0, 0],
-        [0, 0],
-        [0, 0]]
-    field_framed[0][0] = 1
-    print(field_framed)
-    #for row in range(1,m):
-    # for row in range(len(field_framed)):
-    #     print(field_framed[row])
-
+    # Create the field with a box around: for 'out of range' indexes for mines
+    # near to the field's boarders
+    field_framed = []
+    for _ in range(m + 2):
+        field_framed.append([0] * (n + 2))
+    fill_field(field_framed=field_framed, mines=mines)
+    for row in range(1, m + 1):
+        print(*field_framed[row][1:11])
 
 
 if __name__ == '__main__':
