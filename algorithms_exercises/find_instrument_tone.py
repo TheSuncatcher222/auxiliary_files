@@ -17,7 +17,7 @@
 """
 
 """Примеры с ответами для тестов."""
-INPUT_1: list[str] = [                     # 200 250 (например, 125)
+INPUT_1: list[str] = [                     # 225 275 (например, 125)
     '300 250 200 150 100',
     '      1   0   0   0']
 INPUT_2: list[str] = [                     # 310 4000 (например, 3000)
@@ -27,7 +27,7 @@ INPUT_3: list[str] = [                     # 1600 1900 (например, 1800)
     '1500 1700 2100 3900 3800',
     '        1   0     0    1']
 
-INPUT: list[str] = INPUT_3
+INPUT: list[str] = INPUT_1
 
 MIN_FREQ: int = 30
 MAX_FREQ: int = 4000
@@ -36,8 +36,9 @@ MAX_FREQ: int = 4000
 def read_input() -> tuple[list[int]]:
     """Read input data."""
     tones: list[int] = list(map(int, INPUT[0].split()))
-    verdicts: list[int] = list(map(int, INPUT[1].split()))
-    verdicts.insert(0, 0)
+    verdicts = [0]
+    for num in map(int, INPUT[1].split()):
+        verdicts.append(num)
     return tones, verdicts
 
 
