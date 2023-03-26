@@ -5,7 +5,7 @@ def main():
     a = 0
     while a < 1:
     # while a < 1_000_000:
-
+        
 
         result = None
 
@@ -22,7 +22,7 @@ def main_2():
 
         result = None
 
-    
+
         a += 1
     print(result)
 
