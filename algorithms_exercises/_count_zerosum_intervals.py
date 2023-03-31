@@ -28,7 +28,7 @@ INPUT_4: str = '1'  # 0
 
 INPUT: str = INPUT_1
 
-
+# https://youtu.be/de28y8Dcvkg?list=PL6Wui14DvQPySdPv5NUqV3i8sDbHkCKC5&t=1262
 def main_n_1():
     nums: list[int] = list(map(int, INPUT.split()))
     n: int = len(nums)
