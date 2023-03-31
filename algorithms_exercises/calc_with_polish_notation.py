@@ -25,7 +25,7 @@ INPUT_4: str = (
 
 INPUT: str = INPUT_1
 
-OPERATIONS = {
+OPERATIONS: dict[str, any] = {
         '+': lambda x, y: x + y,
         '-': lambda x, y: x - y,
         '*': lambda x, y: x * y,
