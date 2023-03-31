@@ -38,7 +38,7 @@ INPUT_2: list[str] = [      # error
 
 INPUT: list[str] = INPUT_2
 
-DEQUE_COMMANDS = {
+DEQUE_COMMANDS: dict[str, any] = {
         'push_back': lambda deque, x: deque.push(pointer='back', value=x[1]),
         'push_front': lambda deque, x: deque.push(pointer='front', value=x[1]),
         'pop_back': lambda deque, x: deque.pop(pointer='back'),
