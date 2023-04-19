@@ -4,3 +4,4 @@ venv
 
 # Files
 ignore.py
+_*.*
