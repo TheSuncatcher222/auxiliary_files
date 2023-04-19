@@ -3,5 +3,4 @@ __pycache__
 venv
 
 # Files
-ignore.py
-_*.*
+_*.py
