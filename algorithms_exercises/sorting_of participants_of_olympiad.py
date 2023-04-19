@@ -47,13 +47,14 @@ INPUT_3: list[int, str] = [
 
 INPUT: list[int, str] = INPUT_1
 
+from dataclasses import dataclass
 
+
+@dataclass
 class Participant:
-
-    def __init__(self, username, exercises, penalty):
-        self.username = username
-        self.exercises = exercises
-        self.penalty = penalty
+    username: str
+    exercises: int
+    penalty: int
 
     def __gt__(self, other):
         return self.__compare_tuple() < other.__compare_tuple()
@@ -91,8 +92,8 @@ def in_place_quick_sort(arr: list[Participant], left: int, right: int) -> None:
         if left_index >= right_index:
             break
         arr[left_index], arr[right_index] = arr[right_index], arr[left_index]
-    in_place_quick_sort(arr, right_index + 1, right)
-    in_place_quick_sort(arr, left, right_index)
+    in_place_quick_sort(arr=arr, left=right_index + 1, right=right)
+    in_place_quick_sort(arr=arr, left=left, right=right_index)
     return
 
 
