@@ -50,13 +50,10 @@ INPUT: list[int, str] = INPUT_1
 
 class Participant:
 
-    def __init__(self, username, exercises, penalty) -> None:
+    def __init__(self, username, exercises, penalty):
         self.username = username
         self.exercises = exercises
         self.penalty = penalty
-
-    def __compare_tuple(self) -> tuple:
-        return (-self.exercises, self.penalty, self.username)
 
     def __gt__(self, other):
         return self.__compare_tuple() < other.__compare_tuple()
@@ -64,15 +61,18 @@ class Participant:
     def __lt__(self, other):
         return self.__compare_tuple() > other.__compare_tuple()
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         return (
             f'Participant(\'{self.username}\', {self.exercises}, '
             f'{self.penalty})')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return (
             f'Participant @{self.username} solved {self.exercises} tasks '
             f'with a penalty of {self.penalty}')
+
+    def __compare_tuple(self) -> tuple:
+        return (-self.exercises, self.penalty, self.username)
 
 
 def in_place_quick_sort(arr: list[Participant], left: int, right: int) -> None:
@@ -101,11 +101,8 @@ def main() -> None:
     users: list = [None] * users_count
     for i in range(users_count):
         user: list[str] = INPUT[i+1].split()
-        username: str = user[0]
-        exercises: int = int(user[1])
-        penalty: int = int(user[2])
         users[i] = Participant(
-            username=username, exercises=exercises, penalty=penalty)
+            username=user[0], exercises=int(user[1]), penalty=int(user[2]))
     in_place_quick_sort(arr=users, left=0, right=users_count-1)
     for user in users:
         print(user.username)
