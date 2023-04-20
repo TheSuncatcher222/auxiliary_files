@@ -55,12 +55,13 @@ class Participant:
     username: str
     exercises: int
     penalty: int
+    _compare_data = []
 
     def __gt__(self, other):
-        return self.__compare_tuple() < other.__compare_tuple()
+        return self.__compare_data() < other.__compare_data()
 
     def __lt__(self, other):
-        return self.__compare_tuple() > other.__compare_tuple()
+        return self.__compare_data() > other.__compare_data()
 
     def __repr__(self):
         return (
@@ -72,8 +73,10 @@ class Participant:
             f'Participant @{self.username} solved {self.exercises} tasks '
             f'with a penalty of {self.penalty}')
 
-    def __compare_tuple(self) -> tuple:
-        return (-self.exercises, self.penalty, self.username)
+    def __compare_data(self) -> tuple:
+        if not self._compare_data:
+            self._compare_data = (-self.exercises, self.penalty, self.username)
+        return self._compare_data
 
 
 def in_place_quick_sort(arr: list[Participant], left: int, right: int) -> None:
