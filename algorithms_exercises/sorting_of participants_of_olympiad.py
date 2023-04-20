@@ -79,35 +79,35 @@ class Participant:
         return self._compare_data
 
 
-def in_place_quick_sort(
-        arr: list[Participant],
-        left: int = -1,
-        right: int = -1) -> None:
-    if left == -1:
-        left = 0
-        right = len(arr) - 1
-    elif left >= right:
-        return
-    pivot: Participant = arr[(left + right) // 2]
-    left_index: int = left - 1
-    right_index: int = right + 1
-    while 1:
-        left_index += 1
-        while pivot < arr[left_index]:
+def in_place_quick_sort(arr: list):
+    
+    def _run_quick_sort(
+            arr: list[Participant],
+            left: int = -1,
+            right: int = -1) -> None:
+        if left == -1:
+            left = 0
+            right = len(arr) - 1
+        elif left >= right:
+            return
+        pivot: Participant = arr[(left + right) // 2]
+        left_index: int = left - 1
+        right_index: int = right + 1
+        while 1:
             left_index += 1
-        right_index -= 1
-        while pivot > arr[right_index]:
+            while pivot < arr[left_index]:
+                left_index += 1
             right_index -= 1
-        if left_index >= right_index:
-            break
-        arr[left_index], arr[right_index] = arr[right_index], arr[left_index]
-    in_place_quick_sort(arr=arr, left=right_index + 1, right=right)
-    in_place_quick_sort(arr=arr, left=left, right=right_index)
-    return
-
-
-def run_quick_sort(arr: list):
-    in_place_quick_sort(arr=arr, left=0, right=len(arr)-1)
+            while pivot > arr[right_index]:
+                right_index -= 1
+            if left_index >= right_index:
+                break
+            arr[left_index], arr[right_index] = arr[right_index], arr[left_index]
+        _run_quick_sort(arr=arr, left=right_index + 1, right=right)
+        _run_quick_sort(arr=arr, left=left, right=right_index)
+        return
+    
+    _run_quick_sort(arr=arr, left=0, right=len(arr)-1)
 
 
 def main() -> None:
@@ -115,7 +115,7 @@ def main() -> None:
     users = [
         Participant(user[0], int(user[1]), int(user[2]))
         for user in (INPUT[i+1].split() for i in range(users_count))]
-    run_quick_sort(arr=users)
+    in_place_quick_sort(arr=users)
     for user in users:
         print(user.username)
 
