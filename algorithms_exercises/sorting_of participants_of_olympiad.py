@@ -47,7 +47,7 @@ INPUT_3: list[int, str] = [
 
 INPUT: list[int, str] = INPUT_1
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -55,7 +55,8 @@ class Participant:
     username: str
     exercises: int
     penalty: int
-    _compare_data = []
+    _compare_data: tuple = field(default=None)
+
 
     def __gt__(self, other):
         return self.__compare_data() < other.__compare_data()
