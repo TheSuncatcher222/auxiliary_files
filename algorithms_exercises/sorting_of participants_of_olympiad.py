@@ -79,8 +79,14 @@ class Participant:
         return self._compare_data
 
 
-def in_place_quick_sort(arr: list[Participant], left: int, right: int) -> None:
-    if left >= right:
+def in_place_quick_sort(
+        arr: list[Participant],
+        left: int = -1,
+        right: int = -1) -> None:
+    if left == -1:
+        left = 0
+        right = len(arr) - 1
+    elif left >= right:
         return
     pivot: Participant = arr[(left + right) // 2]
     left_index: int = left - 1
@@ -100,6 +106,10 @@ def in_place_quick_sort(arr: list[Participant], left: int, right: int) -> None:
     return
 
 
+def run_quick_sort(arr: list):
+    in_place_quick_sort(arr=arr, left=0, right=len(arr)-1)
+
+
 def main() -> None:
     users_count: int = INPUT[0]
     users: list = [None] * users_count
@@ -107,7 +117,7 @@ def main() -> None:
         user: list[str] = INPUT[i+1].split()
         users[i] = Participant(
             username=user[0], exercises=int(user[1]), penalty=int(user[2]))
-    in_place_quick_sort(arr=users, left=0, right=users_count-1)
+    run_quick_sort(arr=users)
     for user in users:
         print(user.username)
 
