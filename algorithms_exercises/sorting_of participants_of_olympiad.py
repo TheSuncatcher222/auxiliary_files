@@ -112,11 +112,9 @@ def run_quick_sort(arr: list):
 
 def main() -> None:
     users_count: int = INPUT[0]
-    users: list = [None] * users_count
-    for i in range(users_count):
-        user: list[str] = INPUT[i+1].split()
-        users[i] = Participant(
-            username=user[0], exercises=int(user[1]), penalty=int(user[2]))
+    users = [
+        Participant(user[0], int(user[1]), int(user[2]))
+        for user in (INPUT[i+1].split() for i in range(users_count))]
     run_quick_sort(arr=users)
     for user in users:
         print(user.username)
