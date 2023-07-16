@@ -1,3 +1,6 @@
+# DB
+*.sqlite
+
 # Folders
 __pycache__
 venv
