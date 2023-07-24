@@ -1,10 +1,12 @@
 from decorators import time_measure_decorator
 
+RUN_COUNT: int = 1#_000_000
+
+
 @time_measure_decorator
 def main():
     a = 0
-    while a < 1:
-    # while a < 1_000_000:
+    while a < RUN_COUNT:
         
 
         result = None
@@ -13,18 +15,19 @@ def main():
         a += 1
     print(result)
 
+
 @time_measure_decorator
 def main_2():
     a = 0
-    while a < 1:
-    # while a < 1_000_000:
-
+    while a < RUN_COUNT:
+        
 
         result = None
 
 
         a += 1
     print(result)
+
 
 if __name__ == '__main__':
     main()
