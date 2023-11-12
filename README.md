@@ -1,5 +1,5 @@
 !!! Online Markdown Editor: [Dillinger](https://dillinger.io/)
-!!! Other excamples: [Оформляем README (Хабр)](https://habr.com/ru/articles/649363/)
+!!! Other examples: [Оформляем README (Хабр)](https://habr.com/ru/articles/649363/)
 
 # __Project Name__
 
@@ -56,7 +56,7 @@ ___
 
 Tech here.
 
-Bages: https://ileriayo.github.io/markdown-badges/
+Badges: https://ileriayo.github.io/markdown-badges/
 
 ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)
 
@@ -104,7 +104,7 @@ pip install -r requirements.txt
 
 ___
 
-### LICENCE
+### LICENSE
 
 MIT 
 **Free Software, Hell Yeah!**
