@@ -1,0 +1,39 @@
+2023-01-15 17:36:49,215 - [ERROR] - __main__ - (main.py).<module>(18) - division by zero
+Traceback (most recent call last):
+  File "c:\Python\loggers_habr\main.py", line 16, in <module>
+    1/0
+ZeroDivisionError: division by zero
+2023-01-15 17:43:16,463 - [WARNING] - __main__ - (main.py).main(10) - Это warning
+2023-01-15 19:00:52,096 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-15 19:01:15,735 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-15 19:01:40,998 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-15 19:02:03,750 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-15 19:02:33,293 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-15 19:12:51,084 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-15 19:19:34,860 - [WARNING] - __main__ - (main.py).main(10) - Это warning
+2023-01-15 19:19:34,861 - [ERROR] - __main__ - (main.py).<module>(18) - division by zero
+Traceback (most recent call last):
+  File "c:\Python\loggers_habr\main.py", line 16, in <module>
+    1/0
+ZeroDivisionError: division by zero
+2023-01-15 19:19:45,996 - [ERROR] - __main__ - (main.py).<module>(18) - division by zero
+Traceback (most recent call last):
+  File "c:\Python\loggers_habr\main.py", line 16, in <module>
+    1/0
+ZeroDivisionError: division by zero
+2023-01-15 21:36:04,097 - [WARNING] - app_exceptions - (app_exceptions.py).TokenValidationError(13) - AHTUNG!
+2023-01-15 21:46:45,543 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен 1000 не валидный
+2023-01-15 21:47:08,586 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен 1000 не валидный
+2023-01-15 21:47:44,015 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен 1000 не валидный
+2023-01-15 21:47:57,083 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен 1000 не валидный
+2023-01-15 21:47:57,362 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен 1000 не валидный
+2023-01-15 21:48:18,377 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен 1000 не валидный
+2023-01-15 21:48:30,934 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен 1000 не валидный
+2023-01-15 21:49:10,349 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен abcdefghigklmn не валидный
+2023-01-15 21:49:39,220 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен abcdefghigklmn не валидный
+2023-01-15 23:17:25,899 - [WARNING] - app_exceptions - (app_exceptions.py).__init__(16) - Токен abcdefghigklmn не валидный
+2023-01-15 23:17:39,101 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-16 12:20:23,465 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-16 12:20:59,887 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-16 12:21:19,681 - [WARNING] - __main__ - (main.py).main(11) - Это warning
+2023-01-16 12:21:32,615 - [WARNING] - __main__ - (main.py).main(11) - Это warning
