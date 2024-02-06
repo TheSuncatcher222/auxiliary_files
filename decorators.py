@@ -17,14 +17,17 @@ if __name__ == '__main__':
 
     def decorator_function(func):
         def wrapper(*args, **kwargs):
-            print('Выполняем обёрнутую функцию...')
+            print('Выполняем обёрнутую функцию.')
             func(*args, **kwargs)
-            print('Выходим из обёртки')
+            print('Выходим из обёртки.')
         return wrapper
 
     @decorator_function
     def hello_world(a, b):
-        print(a)
-        print(b)
+        print('Зашли в функцию.')
+        print(f'Значение a составляет: {a}.')
+        print(f'Значение b составляет: {b}.')
+        print('Выходим из функции.')
+        return
 
     hello_world(a=100, b=2)
