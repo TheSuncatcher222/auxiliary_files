@@ -26,5 +26,4 @@ def get_logger(name):
     logger.setLevel(logging.DEBUG)
     logger.addHandler(get_file_handler())
     logger.addHandler(get_stream_handler())
-
     return logger
