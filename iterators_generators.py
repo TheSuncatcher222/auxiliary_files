@@ -83,7 +83,7 @@ option: int = 1
 
 if option == 1:
     """
-    Объект MyIterator должен быть итератором: иметь метод __next__.
+    Объект MyIterator должен возвращать итеируемый MyIteratorIterable с методом __next__.
     TypeError: 'MyIterator' object is not an iterator.
     Но MyIterator не должен сам обладать методом, в цикле for используется iter(MyIterator).
     """
