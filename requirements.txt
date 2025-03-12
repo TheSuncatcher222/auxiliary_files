@@ -1,0 +1,2 @@
+# Compiler
+pyinstaller~=6.12  # For export .py to .exe
