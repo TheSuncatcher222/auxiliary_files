@@ -19,8 +19,7 @@
 В объекте-генераторе определены методы __next__ и __iter__, то есть реализован протокол итератора,
 с этой точки зрения, в Python любой генератор является итератором.
 
-Концептуально, итератор — это механизм поэлементного обхода данных,
-а генератор позволяет отложено создавать результат при итерации.
+Концептуально, итератор — это механизм поэлементного обхода данных, а генератор позволяет отложено создавать результат при итерации.
 Генератор может создавать результат на основе какого то алгоритма или брать элементы из источника данных(коллекция, файлы, сетевое подключения и пр) и изменять их.
 """
 
@@ -33,9 +32,9 @@ def my_generator(start: int, stop: int):
 
 a = my_generator(0, 2)
 
-option: int = 3
+option: int = None
 
-if option == 1:
+if option == 1_1:
     try:
         print(next(a))
         print(next(a))
@@ -43,7 +42,7 @@ if option == 1:
         print(next(a))
     except StopIteration:
         pass
-elif option == 2:
+elif option == 1_2:
     for i in a:
         print(i)
 
@@ -79,9 +78,9 @@ class MyIteratorIterable:
 
 a = MyIterator([1, 2, 3])
 
-option: int = 1
+option: int = None
 
-if option == 1:
+if option == 2_1:
     """
     Объект MyIterator должен возвращать итеируемый MyIteratorIterable с методом __next__.
     TypeError: 'MyIterator' object is not an iterator.
@@ -97,7 +96,7 @@ if option == 1:
         print(next(a))
     except StopIteration:
         pass
-elif option == 2:
+elif option == 2_2:
     """
     Объект MyIterator должен быть итерируемым объектом: возвращать итератор в методе __iter__.
     TypeError: 'MyIterator' object is not iterable.
